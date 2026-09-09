@@ -20,3 +20,11 @@
 - Qué se hizo: se revisó el texto completo del relato de apoyo narrado por Emilio Kapkique, ya disponible desde el inicio del proyecto.
 - Resultado: el relato confirma los tres tipos de agua y su efecto ritual (chhijchi uma -> granizo, jallu uma -> lluvia, juyphi uma -> helada), pero no aporta descriptores sensoriales (color, sonido, temperatura, vegetación, olor). Los descriptores inventados por el equipo, ya declarados como tales en la sección 2.2 del GDD, se mantienen sin cambios.
 - Estado: CONFIRMADO, sin acción de código requerida.
+
+## Cambio de arquitectura — de 2D a 3D con eje bloqueado
+Se decidió pasar el cliente de 2D (CharacterBody2D) a 3D con movimiento restringido al plano X/Z (CharacterBody3D + cámara ortogonal), buscando mayor calidad visual en los fondos y el entorno del cerro Kallami. El protocolo de red no cambia: se sigue usando Vector2(x, y), reconstruido como Vector3 solo del lado del cliente.
+
+## T07 — Personaje jugable en 3D, colisiones y cámara
+- Qué se implementó: cliente/jugador.tscn (CharacterBody3D, CollisionShape3D tipo cápsula, AnimatedSprite3D con billboard y filtro Nearest, Camera3D ortogonal en ángulo isométrico) y cliente/mapa_prueba.tscn (piso, paredes, iluminación tenue tipo luz de luna).
+- Cómo se probó: F6 sobre mapa_prueba.tscn, movimiento con WASD.
+- Resultado: CONFIRMADO por el usuario, visualmente, en su propia máquina.

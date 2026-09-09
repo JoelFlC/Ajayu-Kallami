@@ -1,0 +1,107 @@
+[gd_scene format=3 uid="uid://56qulyeci4mn"]
+
+[ext_resource type="PackedScene" path="res://cliente/jugador.tscn" id="1_jugador"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_noche"]
+sky_top_color = Color(0.005, 0.008, 0.03, 1)
+sky_horizon_color = Color(0.035, 0.05, 0.12, 1)
+ground_bottom_color = Color(0.003, 0.004, 0.012, 1)
+ground_horizon_color = Color(0.02, 0.028, 0.07, 1)
+
+[sub_resource type="Sky" id="Sky_noche"]
+sky_material = SubResource("ProceduralSkyMaterial_noche")
+
+[sub_resource type="Environment" id="Environment_noche"]
+background_mode = 2
+background_energy_multiplier = 0.5
+sky = SubResource("Sky_noche")
+ambient_light_source = 3
+ambient_light_color = Color(0.12, 0.16, 0.28, 1)
+ambient_light_energy = 0.25
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_piso"]
+size = Vector3(20, 0.2, 20)
+
+[sub_resource type="StandardMaterial3D" id="Material_gris_oscuro"]
+albedo_color = Color(0.09, 0.1, 0.13, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_piso"]
+size = Vector3(20, 0.2, 20)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pared_larga"]
+size = Vector3(20, 3, 0.2)
+
+[sub_resource type="StandardMaterial3D" id="Material_pared"]
+albedo_color = Color(0.12, 0.13, 0.18, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_pared_larga"]
+size = Vector3(20, 3, 0.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pared_corta"]
+size = Vector3(0.2, 3, 20)
+
+[sub_resource type="BoxMesh" id="BoxMesh_pared_corta"]
+size = Vector3(0.2, 3, 20)
+
+[node name="MapaPrueba" type="Node3D" unique_id=2027350813]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1137826169]
+environment = SubResource("Environment_noche")
+
+[node name="LuzLuna" type="DirectionalLight3D" parent="." unique_id=1653638132]
+transform = Transform3D(0.81915206, 0.46984634, -0.32898995, 0, 0.57357645, 0.81915206, 0.57357645, -0.6710101, 0.46984634, 0, 0, 0)
+light_color = Color(0.45, 0.55, 0.9, 1)
+light_energy = 0.3
+shadow_enabled = true
+
+[node name="Piso" type="StaticBody3D" parent="." unique_id=1604176235]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Piso" unique_id=229759496]
+shape = SubResource("BoxShape3D_piso")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Piso" unique_id=1769887507]
+material_override = SubResource("Material_gris_oscuro")
+mesh = SubResource("BoxMesh_piso")
+
+[node name="ParedNorte" type="StaticBody3D" parent="." unique_id=1810573879]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -10)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ParedNorte" unique_id=192719947]
+shape = SubResource("BoxShape3D_pared_larga")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ParedNorte" unique_id=1768517328]
+material_override = SubResource("Material_pared")
+mesh = SubResource("BoxMesh_pared_larga")
+
+[node name="ParedSur" type="StaticBody3D" parent="." unique_id=1872209621]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 10)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ParedSur" unique_id=885919575]
+shape = SubResource("BoxShape3D_pared_larga")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ParedSur" unique_id=2120651614]
+material_override = SubResource("Material_pared")
+mesh = SubResource("BoxMesh_pared_larga")
+
+[node name="ParedOeste" type="StaticBody3D" parent="." unique_id=1305764768]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 1.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ParedOeste" unique_id=3911989]
+shape = SubResource("BoxShape3D_pared_corta")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ParedOeste" unique_id=283760710]
+material_override = SubResource("Material_pared")
+mesh = SubResource("BoxMesh_pared_corta")
+
+[node name="ParedEste" type="StaticBody3D" parent="." unique_id=1739764944]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 1.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ParedEste" unique_id=1433910304]
+shape = SubResource("BoxShape3D_pared_corta")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ParedEste" unique_id=2135000707]
+material_override = SubResource("Material_pared")
+mesh = SubResource("BoxMesh_pared_corta")
+
+[node name="Jugador" parent="." unique_id=1876439406 instance=ExtResource("1_jugador")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
