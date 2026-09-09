@@ -15,3 +15,8 @@
 - Archivos: servidor/sorteo.gd, cambios en main.gd
 - Cómo se probó: mismo comando de servidor de siempre, revisando la salida de consola directamente.
 - Resultado: CONFIRMADO por el usuario en su propia máquina. Se verificó sorteo aleatorio (candidatos y pozo distintos entre corridas) y prueba de determinismo con semilla fija 12345 (dos corridas dieron el mismo resultado).
+
+## T06 — Verificación del relato de apoyo (Huayna Kallami)
+- Qué se hizo: se revisó el texto completo del relato de apoyo narrado por Emilio Kapkique, ya disponible desde el inicio del proyecto.
+- Resultado: el relato confirma los tres tipos de agua y su efecto ritual (chhijchi uma -> granizo, jallu uma -> lluvia, juyphi uma -> helada), pero no aporta descriptores sensoriales (color, sonido, temperatura, vegetación, olor). Los descriptores inventados por el equipo, ya declarados como tales en la sección 2.2 del GDD, se mantienen sin cambios.
+- Estado: CONFIRMADO, sin acción de código requerida.
