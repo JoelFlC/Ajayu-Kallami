@@ -21,10 +21,25 @@
 - Resultado: el relato confirma los tres tipos de agua y su efecto ritual (chhijchi uma -> granizo, jallu uma -> lluvia, juyphi uma -> helada), pero no aporta descriptores sensoriales (color, sonido, temperatura, vegetación, olor). Los descriptores inventados por el equipo, ya declarados como tales en la sección 2.2 del GDD, se mantienen sin cambios.
 - Estado: CONFIRMADO, sin acción de código requerida.
 
-## Cambio de arquitectura — de 2D a 3D con eje bloqueado
-Se decidió pasar el cliente de 2D (CharacterBody2D) a 3D con movimiento restringido al plano X/Z (CharacterBody3D + cámara ortogonal), buscando mayor calidad visual en los fondos y el entorno del cerro Kallami. El protocolo de red no cambia: se sigue usando Vector2(x, y), reconstruido como Vector3 solo del lado del cliente.
+## Cambio de arquitectura — de 3D con eje bloqueado, de vuelta a 2D real
+Se volvió a 2D porque los tilesets isométricos conseguidos corresponden al sistema nativo de Godot basado en TileMapLayer/TileSet 2D. En la prueba 3D hubo problemas de escala (`pixel_size`) y de texturizado: AtlasTexture repetía sobre toda la imagen fuente en vez de limitarse correctamente a la región recortada.
 
-## T07 — Personaje jugable en 3D, colisiones y cámara
-- Qué se implementó: cliente/jugador.tscn (CharacterBody3D, CollisionShape3D tipo cápsula, AnimatedSprite3D con billboard y filtro Nearest, Camera3D ortogonal en ángulo isométrico) y cliente/mapa_prueba.tscn (piso, paredes, iluminación tenue tipo luz de luna).
-- Cómo se probó: F6 sobre mapa_prueba.tscn, movimiento con WASD.
-- Resultado: CONFIRMADO por el usuario, visualmente, en su propia máquina.
+## T07 (versión final) — Personaje 2D con sprites reales y mapa con tileset isométrico
+- Qué se implementó: `cliente/jugador.tscn` contiene un `CharacterBody2D`, colisión rectangular, `AnimatedSprite2D` con filtro Nearest y cámara 2D. Sus animaciones actuales son `idle` y `caminar`, usando los cinco sprites reales en el orden solicitado. `cliente/jugador.gd` implementa movimiento con combinación de teclas WASD mediante `Input.get_vector`, animación idle/caminar y volteo horizontal. `cliente/mapa_prueba_2d.tscn` usa varias capas `TileMapLayer` (`background`, `background2`, `foreground2`, `foreground` y `detalles`) con atlas reales de los tiles.
+- Archivos: `cliente/jugador.tscn`, `cliente/jugador.gd`, `cliente/mapa_prueba_2d.tscn`, `cliente/sprites/caminante/idle.png`, `paso_der_1.png`, `paso_der_2.png`, `paso_izq_1.png`, `paso_izq_2.png`, `cliente/sprites/tiles_raw/TilesetField.png`, `TilesetFloor.png`, `TilesetElement.png`, `TilesetHouse.png` y `TilesetNature.png`.
+- Assets de arte usados: sprites del personaje (generados con IA, 6 poses: idle, paso derecho x2, paso izquierdo x2); actualmente las animaciones conectan cinco cuadros y también existe `idle_vela.png`, sin estar conectado a las animaciones. Tiles de `TilesetField.png` (licencia CC0, conseguidos en internet, sin atribución obligatoria pero se dará crédito si se identifica la fuente).
+- Cómo se probó: F6 sobre `cliente/mapa_prueba_2d.tscn`, movimiento con WASD y revisión visual directa en la máquina del usuario.
+- Resultado: CONFIRMADO por el usuario en su propia máquina.
+- Verificación adicional: el nodo `foreground` tiene un `TileSet` embebido con `physics_layer_0` y polígonos de colisión para sus tiles. No existe actualmente un archivo externo `.tres`, ni se encontró una configuración nativa explícita de forma/layout isométrico en el `TileSet`; el mapa sí es 2D y usa `TileMapLayer` con tiles reales. El proyecto sigue configurando `res://main.tscn` como escena principal, por lo que el mapa se prueba manualmente con F6.
+
+## Estado actual del proyecto (checkpoint de fin de sesión)
+- T01: no hay una entrada T01 ni evidencia suficiente en los archivos o commits actuales para confirmar su alcance; queda pendiente de reconstrucción/verificación.
+- T02: no hay una entrada T02 ni evidencia suficiente en los archivos o commits actuales para confirmar su alcance; queda pendiente de reconstrucción/verificación.
+- T03: protocolo cliente-servidor con ENet y envío de posiciones mediante `Vector2`, documentado como confirmado por el usuario.
+- T04: base de datos JSON local, registro/login, salt y hash SHA-256 en `servidor/basedatos.gd` y `servidor/auth.gd`; el usuario verificó el archivo real de datos. Confirmado.
+- T05: `servidor/sorteo.gd` con sorteo de lugar/pozo, semilla fija y testimonios; determinismo y sorteo aleatorio confirmados por el usuario.
+- T06: relato de apoyo de Huayna Kallami revisado; confirma los tres tipos de agua y no agrega descriptores sensoriales verificables. Confirmado, sin acción de código.
+- T07: existe un personaje 2D jugable con sprites y animaciones reales, y un mapa 2D con capas `TileMapLayer`, atlas reales y colisiones en `foreground`. La prueba visual con F6 y WASD fue confirmada por el usuario. Como discrepancias pendientes, el script actual usa `VELOCIDAD = 150.0` y movimiento 2D directo normalizado; no contiene la fórmula de transformación isométrica pedida originalmente. Tampoco se encontró configuración nativa isométrica explícita en el `TileSet`.
+- T08: no se encontró implementación ni evidencia verificable en el repositorio actual; pendiente.
+- T09: no se encontró implementación ni evidencia verificable en el repositorio actual; pendiente.
+- T10: no se encontró implementación ni evidencia verificable en el repositorio actual; pendiente.
