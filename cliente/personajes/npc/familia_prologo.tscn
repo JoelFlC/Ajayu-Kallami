@@ -1,0 +1,53 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://cliente/personajes/npc/familia_prologo.gd" id="1_familia"]
+
+[sub_resource type="RectangleShape2D" id="Shape_cama"]
+size = Vector2(28, 14)
+
+[sub_resource type="RectangleShape2D" id="Shape_abuela"]
+size = Vector2(10, 8)
+
+[node name="FamiliaPrologo" type="Node2D"]
+texture_filter = 1
+script = ExtResource("1_familia")
+
+[node name="Abuelo" type="Marker2D" parent="."]
+
+[node name="Cuerpo" type="StaticBody2D" parent="Abuelo"]
+
+[node name="Colision" type="CollisionShape2D" parent="Abuelo/Cuerpo"]
+position = Vector2(0, -4)
+shape = SubResource("Shape_cama")
+
+[node name="Nombre" type="Label" parent="Abuelo"]
+offset_left = -18.0
+offset_top = 5.0
+offset_right = 18.0
+offset_bottom = 15.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 8
+text = "Abuelo"
+horizontal_alignment = 1
+
+[node name="Abuela" type="Marker2D" parent="."]
+position = Vector2(32, 10)
+
+[node name="Cuerpo" type="StaticBody2D" parent="Abuela"]
+
+[node name="Colision" type="CollisionShape2D" parent="Abuela/Cuerpo"]
+shape = SubResource("Shape_abuela")
+
+[node name="Nombre" type="Label" parent="Abuela"]
+offset_left = -18.0
+offset_top = 5.0
+offset_right = 18.0
+offset_bottom = 15.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 8
+text = "Abuela"
+horizontal_alignment = 1

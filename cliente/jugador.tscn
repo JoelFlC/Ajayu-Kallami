@@ -1,40 +1,22 @@
-[gd_scene load_steps=6 format=3]
+[gd_scene load_steps=3 format=3]
 
 [ext_resource type="Script" path="res://cliente/jugador.gd" id="1_jugador"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jugador"]
-radius = 0.4
-height = 1.8
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jugador"]
+size = Vector2(16, 24)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_jugador"]
-animations = []
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_jugador_blanco"]
-radius = 0.4
-height = 1.8
-
-[sub_resource type="StandardMaterial3D" id="Material_jugador_blanco"]
-shading_mode = 0
-albedo_color = Color(1, 1, 1, 1)
-
-[node name="Jugador" type="CharacterBody3D"]
+[node name="Jugador" type="CharacterBody2D"]
 script = ExtResource("1_jugador")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("CapsuleShape3D_jugador")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_jugador")
 
-[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-billboard = 1
 sprite_frames = SubResource("SpriteFrames_jugador")
 
-[node name="VisualBlanco" type="MeshInstance3D" parent="."]
-mesh = SubResource("CapsuleMesh_jugador_blanco")
-material_override = SubResource("Material_jugador_blanco")
-
-[node name="Camera3D" type="Camera3D" parent="."]
-position = Vector3(8, 8, 8)
-rotation_degrees = Vector3(-35, 45, 0)
-projection = 1
-size = 10.0
-current = true
+[node name="Camera2D" type="Camera2D" parent="."]
+enabled = true
+zoom = Vector2(2, 2)
