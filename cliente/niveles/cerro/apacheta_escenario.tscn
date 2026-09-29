@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Texture2D" path="res://cliente/sprites/tiles_raw/TilesetNature.png" id="1_nature"]
+
+[sub_resource type="AtlasTexture" id="Piedra_oscura"]
+atlas = ExtResource("1_nature")
+region = Rect2(128, 192, 16, 16)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="Piedra_clara"]
+atlas = ExtResource("1_nature")
+region = Rect2(144, 192, 16, 16)
+filter_clip = true
+
+[sub_resource type="RectangleShape2D" id="Colision_apacheta"]
+size = Vector2(24, 10)
+
+[node name="ApachetaEscenario" type="StaticBody2D"]
+texture_filter = 1
+
+[node name="Izquierda" type="Sprite2D" parent="."]
+position = Vector2(-7, -4)
+texture = SubResource("Piedra_oscura")
+
+[node name="Derecha" type="Sprite2D" parent="."]
+position = Vector2(7, -4)
+texture = SubResource("Piedra_oscura")
+
+[node name="Cima" type="Sprite2D" parent="."]
+position = Vector2(0, -13)
+texture = SubResource("Piedra_clara")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3)
+shape = SubResource("Colision_apacheta")

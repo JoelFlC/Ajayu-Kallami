@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Texture2D" path="res://cliente/sprites/tiles_raw/TilesetHouse.png" id="1_casas"]
+
+[sub_resource type="AtlasTexture" id="Atlas_pozo"]
+atlas = ExtResource("1_casas")
+region = Rect2(464, 320, 48, 48)
+filter_clip = true
+
+[sub_resource type="RectangleShape2D" id="Colision_pozo"]
+size = Vector2(36, 26)
+
+[sub_resource type="LabelSettings" id="Texto_pozo"]
+font_size = 8
+font_color = Color(1, 0.96, 0.8, 1)
+outline_size = 2
+outline_color = Color(0.08, 0.1, 0.12, 1)
+
+[node name="PozoEscenario" type="StaticBody2D"]
+texture_filter = 1
+
+[node name="Agua" type="Polygon2D" parent="."]
+position = Vector2(0, -17)
+polygon = PackedVector2Array(-10, -8, 10, -8, 14, -3, 14, 7, 8, 11, -8, 11, -14, 7, -14, -3)
+color = Color(0.17, 0.28, 0.32, 1)
+
+[node name="Piedra" type="Sprite2D" parent="."]
+position = Vector2(0, -16)
+texture = SubResource("Atlas_pozo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -13)
+shape = SubResource("Colision_pozo")
+
+[node name="Nombre" type="Label" parent="."]
+offset_left = -35.0
+offset_top = 12.0
+offset_right = 35.0
+offset_bottom = 26.0
+horizontal_alignment = 1
+label_settings = SubResource("Texto_pozo")
+text = "Pozo"

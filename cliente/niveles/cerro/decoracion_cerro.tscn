@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=4]
+
+[ext_resource type="TileSet" path="res://cliente/recursos/tilesets/decoracion_kallami.tres" id="1_decoracion"]
+
+[node name="DecoracionCerro" type="Node2D"]
+y_sort_enabled = true
+texture_filter = 1
+
+[node name="Matas" type="TileMapLayer" parent="."]
+z_index = -1
+tile_map_data = PackedByteArray("AAAZAPL///////////8HAPP///////////8JAPb///////////8QAPb///////////8vAPn///////////8KAPr///////////80APr///////////8CAPv///////////8GAPv///////////8rAPv///////////8BAPz///////////8IAPz///////////8sAPz///////////8CAP3///////////8DAP3///////////8TAP3///////////8yAP3///////////8zAP3///////////8LAP7///////////8VAP7///////////8XAP7///////////8uAP7///////////8vAP7///////////8BAP////////////8SAP////////////8WAP////////////8XAP////////////8yAP////////////8CAAAAAAAEAAoAAAAOAAAAAAADAAoAAAAXAAAAAAAFAAoAAAAcAAEAAAAIAAoAAAAoAAEAAAAHAAoAAAAoAAIAAAAHAAoAAAAoAAMAAAADAAoAAAAnAAQAAAAHAAoAAAAlAAcAAAAEAAoAAAAmAAcAAAAJAAoAAAAjAAgAAAAJAAoAAAAkAAgAAAAEAAoAAAAlAAgAAAAEAAoAAAAmAAgAAAAJAAoAAAAjAAkAAAAIAAoAAAAkAAkAAAAHAAoAAAAjAAsAAAADAAoAAAAxAAsAAAAHAAoAAAABAAwAAAAHAAoAAAAaAAwAAAAEAAoAAAAcAAwAAAAHAAoAAAAxAA0AAAAIAAoAAAABAA4AAAAFAAoAAAAbAA4AAAAIAAoAAAAtAA4AAAADAAoAAAAvAA4AAAAHAAoAAAAxAA4AAAAHAAoAAAAJAA8AAAAFAAoAAAAvABAAAAAJAAoAAAApABEAAAAFAAoAAAAqABEAAAAHAAoAAAArABEAAAAHAAoAAAAsABEAAAAHAAoAAAAuABEAAAADAAoAAAAvABEAAAAHAAoAAAASABIAAAAJAAoAAAAoABIAAAAIAAoAAAApABIAAAADAAoAAAAtABIAAAAIAAoAAAAvABIAAAAFAAoAAAASABMAAAAIAAoAAAAtABMAAAAIAAoAAAAPABQAAAADAAoAAAApABQAAAAJAAoAAAAuABQAAAAEAAoAAAAvABQAAAAJAAoAAAAwABUAAAAEAAoAAAARABYAAAAEAAoAAAAjABYAAAAHAAoAAAApABYAAAAFAAoAAAAsABYAAAAEAAoAAAARABcAAAAJAAoAAAAkABcAAAAJAAoAAAApABcAAAADAAoAAAAwABcAAAAIAAoAAAAxABcAAAAHAAoAAAArABgAAAAJAAoAAAAnABkAAAAFAAoAAAApABkAAAADAAoAAAAvABkAAAADAAoAAAAoABoAAAADAAoAAAAqABoAAAAEAAoAAAA=")
+tile_set = ExtResource("1_decoracion")
+collision_enabled = false
+navigation_enabled = false
+
+[node name="PiedrasSueltas" type="TileMapLayer" parent="."]
+z_index = -1
+tile_map_data = PackedByteArray("AAAkAPP///////////8JAPT///////////8DAPX///////////8ZAPX///////////8rAPX///////////8wAPb///////////8DAPf///////////8FAPf///////////8IAPf///////////8iAPf///////////8sAPf///////////82APf///////////84APf///////////8sAPj///////////8hAPn///////////8UAP3///////////8tAP3///////////8tAP7///////////8HAP////////////8OAP////////////8DAAAAAAAPABIAAAAEAAAAAAAPABIAAAAbAAwAAAAPABIAAAAvAA0AAAAPABIAAAAxAA8AAAAPABIAAAAwABAAAAAPABIAAAAxABUAAAAPABIAAAAlABgAAAAPABIAAAAtABgAAAAPABIAAAAlABkAAAAPABIAAAAlABoAAAAPABIAAAAuABoAAAAPABIAAAA=")
+tile_set = ExtResource("1_decoracion")
+collision_enabled = false
+navigation_enabled = false
+
+[node name="Arbustos" type="TileMapLayer" parent="."]
+y_sort_enabled = true
+y_sort_origin = 8
+tile_map_data = PackedByteArray("AAACAPr///////////8vAPr///////////8FAPv///////////8sAPv///////////8tAPv///////////8IAP7///////////8UAP////////////8WAAAAAAAAAAoAAAAnAAgAAAABAAoAAAAeAAsAAAABAAoAAAAJAA4AAAAGAAoAAAAaAA4AAAAGAAoAAAAvAA8AAAAAAAoAAAAuABYAAAABAAoAAAAvABYAAAACAAoAAAAoABgAAAAAAAoAAAA=")
+tile_set = ExtResource("1_decoracion")
+collision_enabled = false
+navigation_enabled = false

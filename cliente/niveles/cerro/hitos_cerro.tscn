@@ -1,0 +1,140 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="PackedScene" path="res://cliente/niveles/cerro/pozo_escenario.tscn" id="1_pozo"]
+[ext_resource type="PackedScene" path="res://cliente/niveles/cerro/apacheta_escenario.tscn" id="2_apacheta"]
+
+[sub_resource type="LabelSettings" id="Texto_zona"]
+font_size = 10
+font_color = Color(1, 0.95, 0.8, 1)
+outline_size = 2
+outline_color = Color(0.08, 0.1, 0.12, 1)
+
+[node name="HitosCerro" type="Node2D"]
+y_sort_enabled = true
+texture_filter = 1
+
+[node name="Pozo1" parent="." instance=ExtResource("1_pozo")]
+position = Vector2(360, -1390)
+
+[node name="Pozo2" parent="." instance=ExtResource("1_pozo")]
+position = Vector2(520, -1410)
+
+[node name="Pozo3" parent="." instance=ExtResource("1_pozo")]
+position = Vector2(680, -1390)
+
+[node name="ApachetaBaja" parent="." instance=ExtResource("2_apacheta")]
+position = Vector2(552, -120)
+
+[node name="ApachetaMedia" parent="." instance=ExtResource("2_apacheta")]
+position = Vector2(376, -256)
+
+[node name="ApachetaQuebrada" parent="." instance=ExtResource("2_apacheta")]
+position = Vector2(640, -336)
+
+[node name="LaderaBaja" type="Marker2D" parent="."]
+position = Vector2(496, 112)
+
+[node name="Nombre" type="Label" parent="LaderaBaja"]
+offset_left = -90.0
+offset_top = -48.0
+offset_right = 90.0
+offset_bottom = -28.0
+horizontal_alignment = 1
+label_settings = SubResource("Texto_zona")
+text = "Ladera baja"
+
+[node name="LaderaMedia" type="Marker2D" parent="."]
+position = Vector2(496, -160)
+
+[node name="Nombre" type="Label" parent="LaderaMedia"]
+offset_left = -90.0
+offset_top = -48.0
+offset_right = 90.0
+offset_bottom = -28.0
+horizontal_alignment = 1
+label_settings = SubResource("Texto_zona")
+text = "Ladera media"
+
+[node name="RoqueriaAlta" type="Marker2D" parent="."]
+position = Vector2(245, -530)
+
+[node name="Nombre" type="Label" parent="RoqueriaAlta"]
+offset_left = -90.0
+offset_top = -48.0
+offset_right = 90.0
+offset_bottom = -28.0
+horizontal_alignment = 1
+label_settings = SubResource("Texto_zona")
+text = "Roquería alta"
+
+[node name="QuebradaMedia" type="Marker2D" parent="."]
+position = Vector2(770, -535)
+
+[node name="Nombre" type="Label" parent="QuebradaMedia"]
+offset_left = -90.0
+offset_top = -48.0
+offset_right = 90.0
+offset_bottom = -28.0
+horizontal_alignment = 1
+label_settings = SubResource("Texto_zona")
+text = "Quebrada media"
+
+[node name="PasoLaderaAlta" type="Marker2D" parent="."]
+position = Vector2(520, -990)
+
+[node name="Nombre" type="Label" parent="PasoLaderaAlta"]
+offset_left = -90.0
+offset_top = -48.0
+offset_right = 90.0
+offset_bottom = -28.0
+horizontal_alignment = 1
+label_settings = SubResource("Texto_zona")
+text = "Paso de la ladera alta"
+
+[node name="MesetaPozos" type="Marker2D" parent="."]
+position = Vector2(520, -1330)
+
+[node name="Nombre" type="Label" parent="MesetaPozos"]
+offset_left = -90.0
+offset_top = -48.0
+offset_right = 90.0
+offset_bottom = -28.0
+horizontal_alignment = 1
+label_settings = SubResource("Texto_zona")
+text = "Los tres pozos"
+
+[node name="TierraRoqueria" type="Marker2D" parent="."]
+position = Vector2(245, -530)
+
+[node name="TierraQuebrada" type="Marker2D" parent="."]
+position = Vector2(770, -535)
+
+[node name="TierraPasoAlto" type="Marker2D" parent="."]
+position = Vector2(520, -990)
+
+[node name="UbicacionPastora" type="Marker2D" parent="."]
+position = Vector2(168, 320)
+
+[node name="UbicacionComerciante" type="Marker2D" parent="."]
+position = Vector2(240, 150)
+
+[node name="UbicacionComunario" type="Marker2D" parent="."]
+position = Vector2(600, -260)
+
+[node name="UbicacionNinoPastor" type="Marker2D" parent="."]
+position = Vector2(592, -1010)
+
+[node name="UbicacionAchachila" type="Marker2D" parent="."]
+position = Vector2(528, -1184)
+
+[node name="Nombre" type="Label" parent="UbicacionAchachila"]
+offset_left = -90.0
+offset_top = -48.0
+offset_right = 90.0
+offset_bottom = -28.0
+horizontal_alignment = 1
+label_settings = SubResource("Texto_zona")
+text = "Paso del Achachila"
+
+[node name="SalidaPueblo" type="Marker2D" parent="."]
+position = Vector2(88, 392)

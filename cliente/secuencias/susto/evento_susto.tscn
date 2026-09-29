@@ -1,0 +1,58 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://cliente/secuencias/susto/evento_susto.gd" id="1_script"]
+[ext_resource type="PackedScene" path="res://cliente/personajes/enemigos/nanqha.tscn" id="2_nanqha"]
+[ext_resource type="PackedScene" path="res://cliente/efectos/ajayu/ajayu.tscn" id="3_ajayu"]
+
+[sub_resource type="StyleBoxFlat" id="Panel_narrador"]
+bg_color = Color(0.025,0.04,0.07,0.96)
+border_width_top = 2
+border_color = Color(0.55,0.42,0.28,1)
+content_margin_left = 10.0
+content_margin_right = 10.0
+content_margin_top = 8.0
+content_margin_bottom = 8.0
+
+[node name="EventoSusto" type="Node2D"]
+y_sort_enabled = true
+texture_filter = 1
+script = ExtResource("1_script")
+
+[node name="Nanqha" parent="." instance=ExtResource("2_nanqha")]
+visible = false
+
+[node name="Ajayu" parent="." instance=ExtResource("3_ajayu")]
+
+[node name="MoldeAjayu" type="AnimatedSprite2D" parent="."]
+visible = false
+
+[node name="Interfaz" type="CanvasLayer" parent="."]
+layer = 30
+
+[node name="Aviso" type="Label" parent="Interfaz"]
+offset_left = 8.0
+offset_top = 6.0
+offset_right = 472.0
+offset_bottom = 28.0
+theme_override_font_sizes/font_size = 10
+theme_override_colors/font_color = Color(1,0.93,0.78,1)
+theme_override_colors/font_shadow_color = Color(0,0,0,1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+
+[node name="Panel" type="PanelContainer" parent="Interfaz"]
+visible = false
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -68.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("Panel_narrador")
+
+[node name="Texto" type="Label" parent="Interfaz/Panel"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+theme_override_colors/font_color = Color(0.96,0.94,0.87,1)
+autowrap_mode = 3
