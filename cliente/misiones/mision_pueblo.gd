@@ -57,14 +57,22 @@ func _ready() -> void:
 		_aviso("Lleva prenda, tierra y cántaro al yatiri para iniciar el llamado.")
 	elif not introduccion.activa:
 		_al_terminar_introduccion()
+		
+	_crear_sprite_yatiri()
 	queue_redraw()
 
+func _crear_sprite_yatiri() -> void:
+	var spr = Sprite2D.new()
+	spr.texture = load("res://cliente/sprites/npc/yatiri/yatiri.png")
+	spr.region_enabled = true
+	spr.region_rect = Rect2(43, 51, 183, 331)
+	var escala = 27.0 / 326.0
+	spr.scale = Vector2(escala, escala)
+	# YATIRI_POS es Vector2(220, 116), lo ponemos en la posicion
+	spr.position = YATIRI_POS + Vector2(0, -15)
+	add_child(spr)
 
 func _draw() -> void:
-	# Figura temporal: el yatiri aún no tiene sprite definitivo.
-	draw_rect(Rect2(YATIRI_POS + Vector2(-7, -17), Vector2(14, 16)), Color("5b3547"))
-	draw_rect(Rect2(YATIRI_POS + Vector2(-6, -23), Vector2(12, 6)), Color("7b4b36"))
-	draw_circle(YATIRI_POS + Vector2(0, -20), 4, Color("c58e62"))
 	_texto(YATIRI_POS + Vector2(-15, 9), "Yatiri", 9)
 	if fase == &"ritual":
 		_texto(YATIRI_POS + Vector2(-36, -32), "E: entrar a la casa", 8)

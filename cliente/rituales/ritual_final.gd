@@ -39,6 +39,14 @@ var menu_piezas: Label
 var perro: CharacterBody2D
 var escena_clima: Control
 
+var spr_fondo: Sprite2D
+var spr_yatiri: Sprite2D
+var spr_mesa: Sprite2D
+var spr_chompa: Sprite2D
+var spr_tierra: Sprite2D
+var spr_cantaro: Sprite2D
+var spr_vela1: Sprite2D
+var spr_vela2: Sprite2D
 
 func _ready() -> void:
 	layer = 30
@@ -58,6 +66,23 @@ func _ready() -> void:
 	escena_clima.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	escena_clima.hide()
 	lienzo.add_child(escena_clima)
+	
+	_crear_sprites_objetos()
+	
+	var caja_dialogo = ColorRect.new()
+	caja_dialogo.color = Color("091723")
+	caja_dialogo.position = Vector2(8, 187)
+	caja_dialogo.size = Vector2(464, 78)
+	lienzo.add_child(caja_dialogo)
+	
+	var borde_dialogo = ReferenceRect.new()
+	borde_dialogo.border_color = Color("b58658")
+	borde_dialogo.editor_only = false
+	borde_dialogo.border_width = 1.0
+	borde_dialogo.position = Vector2(8, 187)
+	borde_dialogo.size = Vector2(464, 78)
+	lienzo.add_child(borde_dialogo)
+	
 	titulo = _etiqueta(Vector2(16, 6), Vector2(448, 20), 11)
 	titulo.add_theme_color_override("font_shadow_color", Color("08131e"))
 	titulo.add_theme_constant_override("shadow_offset_x", 1)
@@ -78,44 +103,68 @@ func _etiqueta(posicion: Vector2, tamano: Vector2, fuente: int) -> Label:
 	lienzo.add_child(etiqueta)
 	return etiqueta
 
+func _crear_sprites_objetos() -> void:
+	var escala = 27.0 / 326.0
+	
+	spr_fondo = Sprite2D.new()
+	spr_fondo.texture = load("res://cliente/sprites/fondos/casaYatiri.png")
+	spr_fondo.scale = Vector2(480.0 / 1672.0, 270.0 / 941.0)
+	spr_fondo.position = Vector2(240, 135)
+	lienzo.add_child(spr_fondo)
+	
+	spr_yatiri = Sprite2D.new()
+	spr_yatiri.texture = load("res://cliente/sprites/npc/yatiri/yatiri.png")
+	spr_yatiri.region_enabled = true
+	spr_yatiri.region_rect = Rect2(43, 51, 183, 331)
+	spr_yatiri.scale = Vector2(escala * 5.0, escala * 5.0)
+	spr_yatiri.position = Vector2(160, 145)
+	lienzo.add_child(spr_yatiri)
+	
+	spr_mesa = Sprite2D.new()
+	spr_mesa.texture = load("res://cliente/sprites/objetos/mesaPachamama.png")
+	spr_mesa.scale = Vector2(0.3, 0.3)
+	spr_mesa.position = Vector2(280, 145)
+	lienzo.add_child(spr_mesa)
+	
+	spr_chompa = Sprite2D.new()
+	spr_chompa.texture = load("res://cliente/sprites/objetos/chompaAbuelo.png")
+	spr_chompa.scale = Vector2(0.12, 0.12)
+	spr_chompa.position = Vector2(255, 140)
+	lienzo.add_child(spr_chompa)
+	
+	spr_tierra = Sprite2D.new()
+	spr_tierra.texture = load("res://cliente/sprites/objetos/muestraTierra.png")
+	spr_tierra.scale = Vector2(0.13, 0.13)
+	spr_tierra.position = Vector2(305, 140)
+	lienzo.add_child(spr_tierra)
+	
+	spr_cantaro = Sprite2D.new()
+	spr_cantaro.texture = load("res://cliente/sprites/objetos/cantaro.png")
+	spr_cantaro.scale = Vector2(0.10, 0.10)
+	spr_cantaro.position = Vector2(280, 120)
+	lienzo.add_child(spr_cantaro)
+
+	spr_vela1 = Sprite2D.new()
+	spr_vela1.texture = load("res://cliente/sprites/objetos/vela.png")
+	spr_vela1.scale = Vector2(0.10, 0.10)
+	spr_vela1.position = Vector2(240, 150)
+	lienzo.add_child(spr_vela1)
+
+	spr_vela2 = Sprite2D.new()
+	spr_vela2.texture = load("res://cliente/sprites/objetos/vela.png")
+	spr_vela2.scale = Vector2(0.10, 0.10)
+	spr_vela2.position = Vector2(320, 150)
+	lienzo.add_child(spr_vela2)
 
 func _dibujar() -> void:
 	if fase == &"resultado":
 		_dibujar_paisaje_resultado()
 	else:
 		_dibujar_interior()
-	lienzo.draw_rect(Rect2(8, 187, 464, 78), Color("091723"))
-	lienzo.draw_rect(Rect2(8, 187, 464, 78), Color("b58658"), false, 1.0)
-
 
 func _dibujar_interior() -> void:
-	lienzo.draw_rect(Rect2(0, 0, 480, 270), Color("0b1420"))
-	lienzo.draw_rect(Rect2(28, 26, 424, 158), Color("554039"))
-	lienzo.draw_rect(Rect2(34, 31, 412, 149), Color("8a6250"))
-	lienzo.draw_rect(Rect2(34, 111, 412, 69), Color("624331"))
-	lienzo.draw_rect(Rect2(36, 137, 407, 2), Color("936b47"))
-	# Camastro del abuelo y silueta del yatiri.
-	lienzo.draw_rect(Rect2(337, 72, 99, 55), Color("392f34"))
-	lienzo.draw_rect(Rect2(343, 77, 87, 43), Color("9a7963"))
-	lienzo.draw_circle(Vector2(368, 91), 9, Color("b88264"))
-	lienzo.draw_rect(Rect2(377, 84, 44, 20), Color("693e49"))
-	lienzo.draw_rect(Rect2(68, 75, 22, 46), Color("30303e"))
-	lienzo.draw_circle(Vector2(79, 72), 10, Color("a77961"))
-	# Mesa con materiales que aparecen a medida que avanzan los actos.
-	lienzo.draw_rect(Rect2(223, 119, 99, 23), Color("3e2930"))
-	lienzo.draw_rect(Rect2(227, 115, 91, 16), Color("ad744d"))
-	lienzo.draw_rect(Rect2(230, 139, 7, 25), Color("51323a"))
-	lienzo.draw_rect(Rect2(307, 139, 7, 25), Color("51323a"))
-	if fase != &"prenda":
-		lienzo.draw_rect(Rect2(237, 118, 24, 10), Color("a34543"))
-		lienzo.draw_line(Vector2(239, 121), Vector2(258, 121), Color("e4cfaa"), 2)
-	if fase in [&"lavar", &"frotar", &"perro", &"resultado"]:
-		_dibujar_miniatura()
-	if fase in [&"frotar", &"perro", &"resultado"]:
-		lienzo.draw_circle(Vector2(295, 121), 11, Color("506176"))
-		lienzo.draw_circle(Vector2(295, 119), 7, Color("598c91"))
-
-
+	pass
+	
 func _dibujar_paisaje_resultado() -> void:
 	# La viñeta muestra el exterior: el clima no cae dentro de la casa.
 	var helada := tipo_agua == "juyphi"
@@ -163,6 +212,26 @@ func _actualizar_vista() -> void:
 	if sprite_perro.animation != animacion:
 		sprite_perro.play(animacion)
 	menu_piezas.text = ""
+	
+	var es_resultado: bool = (fase == &"resultado")
+	if is_instance_valid(spr_fondo):
+		spr_fondo.visible = not es_resultado
+	if is_instance_valid(spr_mesa):
+		spr_mesa.visible = not es_resultado
+	if is_instance_valid(spr_yatiri):
+		spr_yatiri.visible = not es_resultado
+		
+	if is_instance_valid(spr_chompa):
+		spr_chompa.visible = (fase != &"prenda" and not es_resultado)
+	if is_instance_valid(spr_tierra):
+		spr_tierra.visible = (fase in [&"lavar", &"frotar", &"perro"] and not es_resultado)
+	if is_instance_valid(spr_cantaro):
+		spr_cantaro.visible = (fase in [&"frotar", &"perro"] and not es_resultado)
+	if is_instance_valid(spr_vela1):
+		spr_vela1.visible = not es_resultado
+	if is_instance_valid(spr_vela2):
+		spr_vela2.visible = not es_resultado
+		
 	match fase:
 		&"prenda":
 			relato.text = "El yatiri reúne a la familia. Primer acto: coloca una prenda del abuelo sobre la mesa."

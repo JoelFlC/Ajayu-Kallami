@@ -73,21 +73,55 @@ func _ready() -> void:
 		var agua := mapa.get_node("HitosCerro/Pozo%d/Agua" % indice) as Polygon2D
 		agua.color = AGUAS[_tipo_pozo(identificador)]["tinte"]
 	_aviso("Busca testimonios y tierra. E: examinar pozos; B: bitácora.")
+	_crear_sprites_npc()
+	_crear_sprites_tierra()
 	queue_redraw()
 
+func _crear_sprites_npc() -> void:
+	var npcs = {
+		"pastora": {
+			"ruta": "res://cliente/sprites/npc/pastora/pastora.png",
+			"rect": Rect2(21, 27, 174, 286)
+		},
+		"niño_pastor": {
+			"ruta": "res://cliente/sprites/npc/ninoPastor/ninoPastor.png",
+			"rect": Rect2(31, 11, 208, 323)
+		},
+		"comunario": {
+			"ruta": "res://cliente/sprites/npc/comunario/comunario.png",
+			"rect": Rect2(60, 27, 167, 354)
+		}
+	}
+	var escala = 27.0 / 326.0
+	for nombre in npcs:
+		var marcador = mapa.get_node(TESTIGOS[nombre])
+		var spr = Sprite2D.new()
+		spr.texture = load(npcs[nombre]["ruta"])
+		spr.region_enabled = true
+		spr.region_rect = npcs[nombre]["rect"]
+		spr.scale = Vector2(escala, escala)
+		spr.position = Vector2(0, -12) # Ajustar la altura visualmente
+		marcador.add_child(spr)
+
+func _crear_sprites_tierra() -> void:
+	for nombre in TIERRAS:
+		var marcador := mapa.get_node(TIERRAS[nombre]) as Node2D
+		var spr := Sprite2D.new()
+		spr.name = "SpriteTierra"
+		spr.texture = load("res://cliente/sprites/objetos/muestraTierra.png")
+		spr.scale = Vector2(0.08, 0.08)
+		marcador.add_child(spr)
 
 func _draw() -> void:
 	for nombre in TESTIGOS:
 		var marcador := mapa.get_node(TESTIGOS[nombre]) as Node2D
 		var punto := marcador.position
-		draw_circle(punto + Vector2(0, -7), 6, Color("a56955"))
-		draw_rect(Rect2(punto + Vector2(-8, -1), Vector2(16, 8)), Color("624257"))
 		_texto(punto + Vector2(-24, 17), nombre.replace("_", " "))
 	for nombre in TIERRAS:
-		if tierra_obtenida and nombre == partida.get("lugar_correcto", ""):
-			continue
 		var marcador := mapa.get_node(TIERRAS[nombre]) as Node2D
-		draw_circle(marcador.position, 5, Color("765039"))
+		var ocultar = (tierra_obtenida and nombre == partida.get("lugar_correcto", ""))
+		if marcador.has_node("SpriteTierra"):
+			marcador.get_node("SpriteTierra").visible = not ocultar
 	if not tierra_obtenida or agua_recogida.is_empty():
 		return
 	var salida := mapa.get_node("HitosCerro/SalidaPueblo") as Node2D

@@ -238,6 +238,8 @@ func _dibujar_inventario() -> void:
 			_imagen(Rect2(espacio.position + Vector2(3, 4), Vector2(22, 19)), REGION_PRENDA)
 		elif identificador.begins_with("tierra"):
 			_imagen(Rect2(espacio.position + Vector2(3, 5), Vector2(22, 17)), REGION_TIERRA)
+		elif identificador == "cantaro":
+			interfaz.draw_texture_rect_region(preload("res://cliente/sprites/objetos/cantaro.png"), Rect2(espacio.position + Vector2(3, 3), Vector2(22, 21)), Rect2(36, 1, 302, 358))
 		else:
 			# Marcador provisional de ofrenda; no representa una mesa de madera.
 			var centro := espacio.get_center()
