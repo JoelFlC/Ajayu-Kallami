@@ -11,9 +11,12 @@ signal ajayu_perdido
 
 var prologo_terminado: bool = false
 var etiquetas_ocultadas: Array[CanvasItem] = []
+var nombre_lugar_susto: String = "el claro del cerro"
+var permitir_omitir: bool = false
 
 
 func _ready() -> void:
+	$ZonaSusto/NombreClaro.text = nombre_lugar_susto.capitalize()
 	zona.monitoring = evento_susto_habilitado
 	zona.body_entered.connect(_al_entrar_al_claro)
 	evento.iniciado.connect(_al_iniciar_susto)
@@ -78,7 +81,13 @@ func reiniciar_prologo() -> bool:
 func _mostrar_indicacion() -> void:
 	$Guia.show()
 	evento.aviso.hide()
-	$Guia/Ayuda.text = "WASD: caminar · Seguí el sendero hasta el Claro del cerro.\nEl susto se activa al entrar; R permite repetir al terminar." if evento_susto_habilitado else "WASD: caminar · Recorrido libre (susto desactivado).\nRoquería o quebrada → paso alto → tres pozos."
+	if evento_susto_habilitado:
+		if permitir_omitir:
+			$Guia/Ayuda.text = "WASD: llevá al abuelo hasta %s.\nEnter: omitir prólogo e ir al pueblo." % nombre_lugar_susto
+		else:
+			$Guia/Ayuda.text = "WASD: seguí el sendero hasta %s.\nEl susto se activa al entrar; R permite repetir." % nombre_lugar_susto
+	else:
+		$Guia/Ayuda.text = "WASD: caminar · Recorrido libre (susto desactivado).\nRoquería o quebrada → paso alto → tres pozos."
 
 
 func _unhandled_key_input(evento_tecla: InputEvent) -> void:

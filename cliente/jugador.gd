@@ -15,6 +15,7 @@ const TEXTURA_PERFIL: Texture2D = preload("res://cliente/sprites/caminante/perfi
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
+var velocidad_movimiento: float = VELOCIDAD
 var ultima_orientacion: StringName = &"abajo"
 
 
@@ -86,7 +87,7 @@ func _registrar_accion_si_falta(nombre: StringName, tecla: Key) -> void:
 func _physics_process(_delta: float) -> void:
 	var direccion := Input.get_vector("mover_izquierda", "mover_derecha", "mover_arriba", "mover_abajo")
 	var direccion_iso := direccion.normalized() if direccion != Vector2.ZERO else Vector2.ZERO
-	velocity = direccion_iso * VELOCIDAD
+	velocity = direccion_iso * velocidad_movimiento
 	move_and_slide()
 
 	var esta_moviendose := Vector2(velocity.x, velocity.y).length() > 10.0

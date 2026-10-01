@@ -41,7 +41,7 @@ func _process(_delta: float) -> void:
 			etiqueta_aviso.show()
 			etiqueta_aviso.text = ""
 			
-		if Input.is_action_just_pressed("interactuar") or Input.is_physical_key_pressed(KEY_E):
+		if Input.is_action_just_pressed("interactuar"):
 			etiqueta_aviso.hide()
 			panel.visible = not panel.visible # Alternar visibilidad
 	else:

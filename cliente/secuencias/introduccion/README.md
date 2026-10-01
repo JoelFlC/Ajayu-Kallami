@@ -1,10 +1,16 @@
 # Prólogo jugable
 
-Abrir `cliente/niveles/pueblo/pueblo.tscn` y ejecutar con F6.
+Para probar el recorrido con entrada y salida de la casa, abrir
+`cliente/juego_local.tscn` y ejecutar con F6. Abrir
+`cliente/niveles/pueblo/pueblo.tscn` directamente prueba solo los diálogos:
+la puerta interactiva pertenece a la misión del recorrido local.
 Moverse con WASD: el movimiento nunca se bloquea por la narración.
-Acercarse al abuelo (recostado en una cama, a la izquierda de la abuela)
+Se empieza dentro de su casa. Acercarse al abuelo (recostado en una cama,
+a la izquierda de la abuela)
 y pulsar E. Después de escucharlo, acercarse a la abuela y pulsar E.
 El objetivo superior indica a quién hablar y cuándo se está a distancia.
+Después de conversar, E junto a la puerta lleva al exterior del pueblo;
+la misma tecla junto a la puerta de la casa permite volver a entrar.
 
 Los textos aparecen en un panel inferior con escritura progresiva.
 E o Enter completa el texto; la siguiente pulsación avanza la conversación.
@@ -26,11 +32,16 @@ No se revela el lugar sorteado ni se asignan recompensas o inventario real.
 
 ## Alcance y arte pendiente
 
-Son interacciones locales de prototipo. El yatiri, recoger la prenda y la
-tierra, la misión completa y la sincronización de diálogos por red quedan
-pendientes. El HUD conserva datos de demostración, señalados con PRUEBA.
+Esta escena aislada sigue siendo una prueba de diálogos. El flujo local en
+`cliente/juego_local.tscn` conecta un yatiri provisional, prenda, tierra y
+pozos con indicios sensoriales y bitácora, y un llamado final en tres actos
+con arte provisional; todavía faltan arte definitivo y efectos de cierre.
+El juego se desarrolla para un solo jugador. Al abrir
+solo `pueblo.tscn`, el HUD conserva datos de demostración.
 
-La familia usa figuras provisionales dibujadas por código, con colisiones.
-Necesitaremos sprites transparentes del abuelo enfermo recostado en cama
-y de la abuela de pie, con estilo pixel art compatible con el pueblo.
+El abuelo usa la hoja de susto/caída ya existente y aparece recostado en una
+cama dentro de `cliente/niveles/pueblo/casa_abuelo.tscn`; la abuela usa su
+sprite transparente. La cama usa `tileset_bed.png` y los muebles cercanos
+usan `tileset_camp.png`; el piso terroso conserva el tileset del pueblo.
+Se mantienen las colisiones de cama y muebles.
 No hace falta una ilustración a pantalla completa para este prólogo.

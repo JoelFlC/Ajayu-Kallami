@@ -1,0 +1,88 @@
+[gd_scene load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://cliente/niveles/pueblo/casa_abuelo.gd" id="1_casa"]
+[ext_resource type="Texture2D" path="res://cliente/sprites/tiles_raw/TilesetElement.png" id="2_elementos"]
+[ext_resource type="Texture2D" path="res://cliente/tiles_raw/interiores/tileset_camp.png" id="3_campamento"]
+
+[sub_resource type="RectangleShape2D" id="MuroHorizontal"]
+size = Vector2(192, 8)
+
+[sub_resource type="RectangleShape2D" id="MuroVertical"]
+size = Vector2(8, 128)
+
+[sub_resource type="RectangleShape2D" id="Mueble"]
+size = Vector2(20, 20)
+
+[sub_resource type="RectangleShape2D" id="Arca"]
+size = Vector2(30, 14)
+
+[node name="CasaAbuelo" type="Node2D"]
+texture_filter = 1
+y_sort_enabled = true
+position = Vector2(1000, 1000)
+script = ExtResource("1_casa")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(96, 64)
+zoom = Vector2(1.85, 1.85)
+
+[node name="Arca" type="Sprite2D" parent="."]
+position = Vector2(28, 93)
+texture = ExtResource("2_elementos")
+region_enabled = true
+region_rect = Rect2(96, 112, 32, 32)
+
+[node name="TarroArca" type="Sprite2D" parent="."]
+position = Vector2(22, 76)
+texture = ExtResource("2_elementos")
+region_enabled = true
+region_rect = Rect2(16, 0, 16, 16)
+
+[node name="Canasto" type="Sprite2D" parent="."]
+position = Vector2(160, 39)
+texture = ExtResource("3_campamento")
+region_enabled = true
+region_rect = Rect2(64, 96, 32, 32)
+
+[node name="MesaBaja" type="Sprite2D" parent="."]
+position = Vector2(159, 83)
+texture = ExtResource("3_campamento")
+region_enabled = true
+region_rect = Rect2(16, 80, 32, 32)
+
+[node name="Muros" type="StaticBody2D" parent="."]
+
+[node name="Norte" type="CollisionShape2D" parent="Muros"]
+position = Vector2(96, 4)
+shape = SubResource("MuroHorizontal")
+
+[node name="Sur" type="CollisionShape2D" parent="Muros"]
+position = Vector2(96, 124)
+shape = SubResource("MuroHorizontal")
+
+[node name="Oeste" type="CollisionShape2D" parent="Muros"]
+position = Vector2(4, 64)
+shape = SubResource("MuroVertical")
+
+[node name="Este" type="CollisionShape2D" parent="Muros"]
+position = Vector2(188, 64)
+shape = SubResource("MuroVertical")
+
+[node name="Canasto" type="CollisionShape2D" parent="Muros"]
+position = Vector2(159, 37)
+shape = SubResource("Mueble")
+
+[node name="MesaBaja" type="CollisionShape2D" parent="Muros"]
+position = Vector2(159, 83)
+shape = SubResource("Mueble")
+
+[node name="Fogon" type="CollisionShape2D" parent="Muros"]
+position = Vector2(129, 41)
+shape = SubResource("Mueble")
+
+[node name="Arca" type="CollisionShape2D" parent="Muros"]
+position = Vector2(27, 99)
+shape = SubResource("Arca")
+
+[node name="PuertaInterior" type="Marker2D" parent="."]
+position = Vector2(96, 106)

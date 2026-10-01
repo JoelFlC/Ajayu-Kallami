@@ -20,6 +20,7 @@ script = ExtResource("1_script")
 
 [node name="Nanqha" parent="." instance=ExtResource("2_nanqha")]
 visible = false
+z_index = 5
 
 [node name="Ajayu" parent="." instance=ExtResource("3_ajayu")]
 

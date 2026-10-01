@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://cliente/personajes/npc/perro.gd" id="1_perro"]
+
+[sub_resource type="RectangleShape2D" id="Shape_patas"]
+size = Vector2(10, 8)
+
+[node name="Perro" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 1
+motion_mode = 1
+script = ExtResource("1_perro")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("Shape_patas")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, 6)
+scale = Vector2(0.8, 0.8)

@@ -1,14 +1,7 @@
 extends Node2D
 
 const HojaSusto = preload("res://cliente/secuencias/susto/hoja_susto.gd")
-
-func _draw() -> void:
-	# Dibujamos solo la cama (madera y almohada) ya que los personajes ahora son sprites
-	var madera := Color("684337")
-	draw_rect(Rect2(-14, -23, 28, 26), madera)
-	draw_rect(Rect2(-12, -21, 24, 6), Color("d1c5a6"))
-	draw_rect(Rect2(-13, 2, 3, 3), madera)
-	draw_rect(Rect2(10, 2, 3, 3), madera)
+const TexturaCama = preload("res://cliente/tiles_raw/interiores/tileset_bed.png")
 
 func _ready() -> void:
 	# ABUELO (Acostado / Caído)
@@ -19,9 +12,18 @@ func _ready() -> void:
 		spr_abuelo.animation = "caido"
 		spr_abuelo.frame = 1 # Usa el último frame de caída para simular que está en cama
 		spr_abuelo.scale = Vector2(HojaSusto.ESCALA, HojaSusto.ESCALA)
-		spr_abuelo.position = Vector2(0, -10)
-		spr_abuelo.rotation = deg_to_rad(90) # Rotar 90 positivo para que la cabeza quede en la almohada
+		spr_abuelo.position = Vector2(9, -10)
+		# La última fila ya está acostada; se gira para seguir la cama vertical.
+		spr_abuelo.rotation = PI / 2.0
 		$Abuelo.add_child(spr_abuelo)
+		# Repetimos la zona de cobija por encima de las piernas para que se vea
+		# arropado y no de pie sobre el colchón.
+		var cobija := Sprite2D.new()
+		cobija.texture = TexturaCama
+		cobija.region_enabled = true
+		cobija.region_rect = Rect2(0, 25, 32, 16)
+		cobija.position = Vector2(0, 0)
+		$Abuelo.add_child(cobija)
 		
 	# ABUELA (De pie)
 	var spr_abuela = Sprite2D.new()

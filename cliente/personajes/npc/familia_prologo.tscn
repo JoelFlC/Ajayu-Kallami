@@ -1,9 +1,10 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=5 format=3]
 
 [ext_resource type="Script" path="res://cliente/personajes/npc/familia_prologo.gd" id="1_familia"]
+[ext_resource type="Texture2D" path="res://cliente/tiles_raw/interiores/tileset_bed.png" id="2_cama"]
 
 [sub_resource type="RectangleShape2D" id="Shape_cama"]
-size = Vector2(28, 14)
+size = Vector2(28, 48)
 
 [sub_resource type="RectangleShape2D" id="Shape_abuela"]
 size = Vector2(10, 8)
@@ -14,17 +15,24 @@ script = ExtResource("1_familia")
 
 [node name="Abuelo" type="Marker2D" parent="."]
 
+[node name="Cama" type="Sprite2D" parent="Abuelo"]
+texture_filter = 1
+position = Vector2(0, -9)
+texture = ExtResource("2_cama")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 48)
+
 [node name="Cuerpo" type="StaticBody2D" parent="Abuelo"]
 
 [node name="Colision" type="CollisionShape2D" parent="Abuelo/Cuerpo"]
-position = Vector2(0, -4)
+position = Vector2(0, -9)
 shape = SubResource("Shape_cama")
 
 [node name="Nombre" type="Label" parent="Abuelo"]
 offset_left = -18.0
-offset_top = 5.0
+offset_top = 18.0
 offset_right = 18.0
-offset_bottom = 15.0
+offset_bottom = 28.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_offset_y = 1
@@ -41,13 +49,13 @@ position = Vector2(32, 10)
 shape = SubResource("Shape_abuela")
 
 [node name="Nombre" type="Label" parent="Abuela"]
-offset_left = -18.0
-offset_top = 5.0
-offset_right = 18.0
-offset_bottom = 15.0
+offset_left = 12.0
+offset_top = -20.0
+offset_right = 48.0
+offset_bottom = -10.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_offset_y = 1
 theme_override_font_sizes/font_size = 8
 text = "Abuela"
-horizontal_alignment = 1
+horizontal_alignment = 0
